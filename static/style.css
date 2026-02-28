@@ -1,0 +1,221 @@
+/* Color Palette Definitions */
+:root {
+    --primary-blue: #3498db;    /* Main buttons and links */
+    --hover-blue: #2980b9;      /* Darker shade for hover states */
+    --dark-navy: #2c3e50;       /* Navbar and headings */
+    --light-gray: #f4f7f6;      /* Backgrounds */
+    --white: #ffffff;           /* Cards and containers */
+    --border-gray: #dddddd;     /* Input borders */
+    --text-dark: #333333;       /* Main body text */
+    --text-muted: #777777;      /* Footer and labels */
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--light-gray);
+}
+
+/* Navigation Bar */
+nav {
+    background: var(--dark-navy);
+    color: var(--white);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--primary-blue);
+}
+
+/* Hero & Content Sections (Homepage) */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    text-align: center;
+    padding: 0 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* Sign-In Page Specifics */
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Centers the login box vertically */
+}
+
+.login-container {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow);
+    width: 350px;
+}
+
+/* Form Elements */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid var(--border-gray);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn {
+    display: inline-block;
+    width: 100%;
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 12px 25px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: var(--hover-blue);
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+ /* Specific tweaks for dashboard layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px var(--shadow);
+            border-top: 4px solid var(--primary-blue);
+        }
+        .stat-card h3 { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; }
+        .stat-card p { font-size: 1.8rem; font-weight: bold; color: var(--dark-navy); }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+        .data-table th, .data-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-gray); }
+        .data-table th { background-color: var(--dark-navy); color: var(--white); }
+        .data-table tr:hover { background-color: var(--light-gray); }
+
+  /* Specific Chat Styling */
+        .chat-wrapper {
+            max-width: 900px;
+            margin: 20px auto;
+            background: var(--white);
+            height: 70vh;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: var(--dark-navy);
+            color: var(--white);
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Message Bubbles */
+        .message {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            font-size: 0.95rem;
+        }
+
+        .bot-msg {
+            align-self: flex-start;
+            background: var(--border-gray);
+            color: var(--text-dark);
+            border-bottom-left-radius: 2px;
+        }
+
+        .user-msg {
+            align-self: flex-end;
+            background: var(--primary-blue);
+            color: var(--white);
+            border-bottom-right-radius: 2px;
+        }
+
+        /* Input Area */
+        .chat-input-area {
+            padding: 20px;
+            border-top: 1px solid var(--border-gray);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input-area input {
+            margin: 0; /* Override default margin */
+            flex: 1;
+        }
+
+        .chat-input-area button {
+            width: auto;
+            padding: 0 25px;
+        }

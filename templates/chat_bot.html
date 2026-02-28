@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Chatbot</title>
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+<body>
+
+    <nav>
+        <div class="logo">AI Assistant</div>
+        <div class="links">
+            <a href="/home">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="chat-wrapper">
+            <div class="chat-header">
+                Chatting with Flask-Bot
+            </div>
+
+            <div class="chat-box" id="chatBox">
+                <div class="message bot-msg">
+                    Hello! I'm your Flask-powered assistant. How can I help you today?
+                </div>
+            </div>
+
+            <form class="chat-input-area" id="chatForm">
+                <input type="text" id="userInput" placeholder="Type your message..." required>
+                <button type="submit" class="btn">Send</button>
+            </form>
+        </div>
+    </div>
+ <!-- javascript for chat bot -->
+    <script>
+        const chatForm = document.getElementById('chatForm');
+        const chatBox = document.getElementById('chatBox');
+        const userInput = document.getElementById('userInput');
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = userInput.value;
+            if (!message) return;
+
+            // 1. Display User Message
+            appendMessage(message, 'user-msg');
+            userInput.value = '';
+
+            // 2. Send to Flask Server
+            try {
+                const response = await fetch('/response', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+                
+                // 3. Display Bot Response
+                appendMessage(data.reply, 'bot-msg');
+            } catch (error) {
+                appendMessage("Error: Could not connect to server.", 'bot-msg');
+            }
+        });
+
+        function appendMessage(text, className) {
+            const div = document.createElement('div');
+            div.className = `message ${className}`;
+            div.textContent = text;
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+
+</body>
+</html>
