@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, jsonify
+from gemini_ai import generate
 
 server = Flask(__name__)
 
@@ -36,17 +37,20 @@ def submit():
 @server.route("/response", methods=["POST"])
 def get_bot_response():
     # Use request.json because we will send data from JS as JSON
-    data = request.json
-    user_message = data.get("message", "").lower()
+    userInput = request.json.get("message")
+    final_respose = generate(userInput)
+    return jsonify({"respose": final_respose})
 
+
+    
     # Simple logic for bot responses
-    if "hello" in user_message or "hi" in user_message:
-        bot_answer = "Hello! How can I help you today?"
-    elif "time" in user_message:
-        from datetime import datetime
-        bot_answer = f"The current time is {datetime.now().strftime('%H:%M:%S')}."
-    else:
-        bot_answer = f"You said: '{user_message}'. I'm still learning, but that sounds interesting!"
+    # if "hello" in user_message or "hi" in user_message:
+    #     bot_answer = "Hello! How can I help you today?"
+    # elif "time" in user_message:
+    #     from datetime import datetime
+    #     bot_answer = f"The current time is {datetime.now().strftime('%H:%M:%S')}."
+    # else:
+    #     bot_answer = f"You said: '{user_message}'. I'm still learning, but that sounds interesting!"
 
     # Return the response as JSON
     return jsonify({"reply": bot_answer})
