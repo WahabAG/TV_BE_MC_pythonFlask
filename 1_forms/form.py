@@ -41,9 +41,9 @@ def register():
 
         # this iswhere you would normarly save ro database
         flash(f"Account created for {username}")
-        return("Registeration Successful")
+        # return("Registeration Successful")
 
-    return render_template("sign_up.html", form=form )
+    return render_template("register.html", form=form )
 
 if __name__ == "__main__":
     app.run(debug=True)
